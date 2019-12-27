@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: majosue <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: majosue <majosue@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 16:04:38 by majosue           #+#    #+#              #
-#    Updated: 2019/11/12 20:36:38 by majosue          ###   ########.fr        #
+#    Updated: 2019/12/26 17:09:00 by majosue          ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 NAME = libft.a
 HEADER = libft.h
@@ -27,7 +27,7 @@ SOURCES  =  \
 	ft_strlcat.c    ft_strlen.c     ft_strmap.c     ft_strmapi.c    ft_strncat.c \
 	ft_strncmp.c    ft_strncpy.c    ft_strnequ.c    ft_strnew.c     ft_strnstr.c \
 	ft_strrchr.c    ft_strsplit.c   ft_strstr.c     ft_strsub.c     ft_strtrim.c \
-	ft_tolower.c    ft_toupper.c    ft_atoi.c
+	ft_tolower.c    ft_toupper.c    ft_atoi.c		get_next_line.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)

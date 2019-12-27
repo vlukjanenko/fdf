@@ -6,7 +6,7 @@
 #    By: majosue <majosue@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/13 10:14:46 by majosue           #+#    #+#              #
-#    Updated: 2019/12/19 20:49:54 by majosue          ###   ########.fr        #
+#    Updated: 2019/12/27 11:05:14 by majosue          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ INCLUDES = -I libft/ -I minilibx_macos/
 MINILIBX = minilibx_macos/libmlx.a
 LIBFT = libft/libft.a
 COMPILERC = gcc
-FLAGS = -Wall -Wextra -Werror
-SOURCES  =  fdf.c
+FLAGS = -g -Wall -Wextra -Werror
+SOURCES  =  fdf.c ft_readmap.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

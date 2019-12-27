@@ -6,22 +6,26 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2019/12/20 11:00:51 by majosue          ###   ########.fr       */
+/*   Updated: 2019/12/27 11:00:51 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXAMPLE_H
-# define EXAMPLE_H
+#ifndef FDF_H
+# define FDF_H
 
 # include <math.h>
 # include "mlx.h"
+# include "libft.h"
+# include "get_next_line.h"
+# include <fcntl.h>
+# include <stdio.h> //for testing
 
 /*
  Defines for the width and height of your window. I suggest you to do the same so
  you can change easily the size of your window later if needed.
 */
-# define WIN_WIDTH 100
-# define WIN_HEIGHT 100
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 
 /*
  Here I built a struct of the MLX image :
@@ -54,5 +58,7 @@ typedef struct	s_mlx
 	void		*win;
 	t_img		img;
 }				t_mlx;
+
+char **ft_readmap(int fd, int *width, int *height);
 
 #endif
