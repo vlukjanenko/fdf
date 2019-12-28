@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 17:11:51 by majosue           #+#    #+#             */
-/*   Updated: 2019/12/27 13:32:50 by majosue          ###   ########.fr       */
+/*   Updated: 2019/12/28 10:01:32 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	ft_append(char **param, char **line)
 		if (!(*param = ft_strjoin(*line, " ")))
 			return (0);
 		free(*line);
+		line = 0;
 		return (1);
 	}
 	tmp = *line;
@@ -49,6 +50,7 @@ static int	ft_append(char **param, char **line)
 		return (0);
 	free(tmp);
 	free(*line);
+	*line = 0;
 	return (1);
 }
 
@@ -61,8 +63,8 @@ static void	cleanup(char **param, char **line)
 	}
 	if (*line)
 	{
-		free(*param);
-		*param = 0;
+		free(*line);
+		*line = 0;
 	}
 }
 
@@ -79,7 +81,7 @@ char		**ft_readmap(int fd, int *width, int *height)
 	*width = 0;
 	param = 0;
 	array = 0;
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0 && !(*error))
 	{
 		*width = *width == 0 ? ft_wrdnbr(line, ' ') : *width;
 		error = *width != ft_wrdnbr(line, ' ') ?\
