@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2019/12/27 11:00:51 by majosue          ###   ########.fr       */
+/*   Updated: 2019/12/29 14:49:01 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
  Defines for the width and height of your window. I suggest you to do the same so
  you can change easily the size of your window later if needed.
 */
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
-
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 1200
+# define MARGIN 0
 /*
  Here I built a struct of the MLX image :
  It contains everything you need.
@@ -59,6 +59,15 @@ typedef struct	s_mlx
 	t_img		img;
 }				t_mlx;
 
+typedef struct s_point
+{
+	int x;
+	int y;
+	int z;
+	int c;
+} t_point;
+
 char **ft_readmap(int fd, int *width, int *height);
+int  ft_draw_line(t_mlx *mlx, t_point p1, t_point p2);
 
 #endif
