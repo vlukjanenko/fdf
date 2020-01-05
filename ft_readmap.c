@@ -6,13 +6,13 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 17:11:51 by majosue           #+#    #+#             */
-/*   Updated: 2019/12/28 10:01:32 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/04 11:59:55 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	ft_wrdnbr(char const *s, char c)
+int	ft_wrdnbr(char const *s, char c)
 {
 	int n;
 
@@ -29,7 +29,7 @@ static int	ft_wrdnbr(char const *s, char c)
 	return (n);
 }
 
-static int	ft_append(char **param, char **line)
+int	ft_append(char **param, char **line)
 {
 	char *tmp;
 
@@ -54,17 +54,17 @@ static int	ft_append(char **param, char **line)
 	return (1);
 }
 
-static void	cleanup(char **param, char **line)
+void	cleanup(char **param, char **line)
 {
 	if (*param)
 	{
 		free(*param);
-		*param = 0;
+		(*param) = 0;
 	}
 	if (*line)
 	{
 		free(*line);
-		*line = 0;
+		(*line) = 0;
 	}
 }
 
@@ -72,9 +72,9 @@ char		**ft_readmap(int fd, int *width, int *height)
 {
 	char *param;
 	char *line;
-	char **array;
 	char *error;
-
+	char **array;
+	
 	error = "";
 	line = 0;
 	*height = 0;
@@ -90,8 +90,10 @@ char		**ft_readmap(int fd, int *width, int *height)
 		(*height)++;
 	}
 	error = *width == 0 ? "No data found." : error;
-	if (*error || !(array = ft_strsplit(param, ' ')))
+	array = ft_strsplit(param, ' ');
+	if (*error || !array)
 		*error ? ft_putendl(error) : ft_putendl("Unexpected error. Exiting");
 	cleanup(&param, &line);
 	return (array);
+
 }

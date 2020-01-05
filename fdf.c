@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 16:27:24 by majosue           #+#    #+#             */
-/*   Updated: 2019/12/29 18:12:41 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/04 19:18:27 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,59 @@ int ft_map_init(t_point **map, char **a, int w, int h)
 	(*map) = (t_point*)malloc(sizeof(t_point) * w * h);
 	i = -1;
 	j = -1;
-	d = w >= h ? WIN_WIDTH / w - 1 : WIN_HEIGHT / h - 1;
+	d = w > h ? WIN_WIDTH / w - 1 : WIN_HEIGHT / h - 1;
 	while (++j < h)
 		{
 			while(++i < w)
 			{
 				(*map)[k].x = i * d + (d + WIN_WIDTH - d * w)/2;
 				(*map)[k].y = j * d + (d + WIN_HEIGHT - d * h)/2;;
-				(*map)[k].z = ft_atoi(a[j * w + i]); 
-				(*map)[k].c = 0xFFFFFF;
+				(*map)[k].z = ft_atoi(a[j * w + i]);
+				(*map)[k].c = 0xFFFFFF - ft_atoi(a[j * w + i]);
 				k++;
 			}
 		i = -1;
 		}
 return (1);
+}
+
+
+int deal_key(int key, void *mlx)
+{
+int i;
+
+i = -1;
+if (key == 65307)
+	exit(0);
+printf("%d\n", key);
+if (key == 65363)
+	{
+		while (++i < WIN_HEIGHT * WIN_WIDTH)
+		(*(t_mlx*)mlx).img.data[i] = 0;
+		mlx_put_image_to_window((*(t_mlx*)mlx).mlx_ptr, (*(t_mlx*)mlx).win,(*(t_mlx*)mlx).img.img_ptr, 0, 0);
+	}
+printf("%d\n", key);
+    
+   // ft_putchar('X');
+   // *(int*)param = *(int*)param + 1;
+   // printf("%d\n", *(int*)param);
+    return (0);
+}
+int deal_mouse(int button,int x,int y,void *param)
+{
+printf("B = %d\n", button);
+ printf("x = %d\n", x);
+ printf("y = %d\n", y);   
+   // ft_putchar('X');
+   // *(int*)param = *(int*)param + 1;
+   // printf("%d\n", *(int*)param);
+    return (0);
+}
+
+int close_w(void *param)
+{
+    (void)param;
+    exit(0);
 }
 
 int main(int argc, char **argv)
@@ -89,6 +128,11 @@ int main(int argc, char **argv)
 			ft_draw_line(&mlx,map[i],map[i - width]);
 	}
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win, mlx.img.img_ptr, 0, 0);
+	mlx_key_hook(mlx.win, &deal_key, &mlx);
+	mlx_mouse_hook(mlx.win, &deal_mouse, 0);
+	mlx_hook(mlx.win, 17, (1L<<17), &close_w, 0);
 	mlx_loop(mlx.mlx_ptr);
+	while (*array)
+		printf("%s ", *array++);
 	cleanarr(&array);
 }
