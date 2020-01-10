@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2019/12/29 14:49:01 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/09 17:24:20 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,26 @@ typedef struct	s_img
  - win stores the return value of mlx_new_window
  - img will store everything we need for the image part, the struct is described above.
  */
+typedef struct s_point {
+	int x;
+	double xo;
+	int y;
+	double yo;
+	double zo;
+	int c;
+	int w;
+	int h;
+} t_point;
+
 typedef struct	s_mlx
 {
 	void		*mlx_ptr;
 	void		*win;
+	t_point		*map;
 	t_img		img;
 }				t_mlx;
 
-typedef struct s_point
-{
-	int x;
-	int y;
-	int z;
-	int c;
-} t_point;
+
 
 char **ft_readmap(int fd, int *width, int *height);
 int  ft_draw_line(t_mlx *mlx, t_point p1, t_point p2);
