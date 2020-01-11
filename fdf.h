@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2020/01/09 17:24:20 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/10 12:58:25 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ typedef struct	s_img
 typedef struct s_point {
 	int x;
 	double xo;
+	double xp;
 	int y;
 	double yo;
+	double yp;
 	double zo;
 	int c;
 	int w;

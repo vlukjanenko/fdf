@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 14:33:29 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/08 12:26:49 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/10 11:42:17 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_xstep(t_mlx *mlx, t_point p1, t_point p2)
 	diry = (p2.y - p1.y) < 0 ? -1 : 1;
 	while (p1.x <= p2.x)
 	{
-		(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = 0xFFFFFF;
+		if (p1.y < WIN_HEIGHT && p1.y >= 0 && p1.x < WIN_WIDTH && p1.x > 0)
+			(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = 0xFFFFFF;
 		error = error + deltaerr;
 		if (error >= (deltax + 1))
 		{
@@ -62,6 +63,7 @@ void	ft_ystep(t_mlx *mlx, t_point p1, t_point p2)
 	dirx = (p2.x - p1.x) < 0 ? -1 : 1;
 	while (p1.y <= p2.y)
 	{
+	if (p1.y < WIN_HEIGHT && p1.y >= 0 && p1.x < WIN_WIDTH && p1.x > 0)
 		(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = 0xFFFFFF;
 		error = error + deltaerr;
 		if (error >= (deltay + 1))
