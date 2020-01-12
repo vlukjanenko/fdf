@@ -6,11 +6,16 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 14:33:29 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/10 11:42:17 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/12 19:32:37 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int ft_getcolor(t_point p1, t_point p2, int step)
+{
+	return (p1.ci);
+}
 
 void	ft_swap(t_point *p1, t_point *p2)
 {
@@ -37,7 +42,7 @@ void	ft_xstep(t_mlx *mlx, t_point p1, t_point p2)
 	while (p1.x <= p2.x)
 	{
 		if (p1.y < WIN_HEIGHT && p1.y >= 0 && p1.x < WIN_WIDTH && p1.x > 0)
-			(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = 0xFFFFFF;
+			(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = ft_getcolor(p1, p2, p1.x);
 		error = error + deltaerr;
 		if (error >= (deltax + 1))
 		{
@@ -64,7 +69,7 @@ void	ft_ystep(t_mlx *mlx, t_point p1, t_point p2)
 	while (p1.y <= p2.y)
 	{
 	if (p1.y < WIN_HEIGHT && p1.y >= 0 && p1.x < WIN_WIDTH && p1.x > 0)
-		(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = 0xFFFFFF;
+		(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = ft_getcolor(p1, p2, p1.y);
 		error = error + deltaerr;
 		if (error >= (deltay + 1))
 		{

@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 17:11:51 by majosue           #+#    #+#             */
-/*   Updated: 2019/12/28 10:01:32 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/12 17:01:10 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	cleanup(char **param, char **line)
 	}
 }
 
-char		**ft_readmap(int fd, int *width, int *height)
+char		**ft_readmap(int fd, int *width, int *height, int *number)
 {
 	char *param;
 	char *line;
@@ -93,5 +93,6 @@ char		**ft_readmap(int fd, int *width, int *height)
 	if (*error || !(array = ft_strsplit(param, ' ')))
 		*error ? ft_putendl(error) : ft_putendl("Unexpected error. Exiting");
 	cleanup(&param, &line);
+	*number = *width * *height;
 	return (array);
 }

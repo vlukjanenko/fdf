@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2020/01/10 12:58:25 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/12 19:12:43 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ typedef struct s_point {
 	int x;
 	double xo;
 	double xp;
+	double xi;
 	int y;
 	double yo;
 	double yp;
+	double yi;
 	double zo;
+	double zi;
 	int c;
-	int w;
-	int h;
+	int ci;
 } t_point;
 
 typedef struct	s_mlx
@@ -70,12 +72,24 @@ typedef struct	s_mlx
 	void		*mlx_ptr;
 	void		*win;
 	t_point		*map;
+	int	w;
+	int h;
+	int n;
+	float zoom;
+	float ax;
+	float ay;
+	float az;
+	float center;
+	float alt;
+	int p;
+
 	t_img		img;
 }				t_mlx;
 
 
 
-char **ft_readmap(int fd, int *width, int *height);
-int  ft_draw_line(t_mlx *mlx, t_point p1, t_point p2);
+char **ft_readmap(int fd, int *width, int *height, int *number);
+int ft_draw_line(t_mlx *mlx, t_point p1, t_point p2);
+int	ft_atoi_base(const char *nbr, unsigned int base);
 
 #endif

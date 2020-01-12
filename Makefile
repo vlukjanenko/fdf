@@ -6,7 +6,7 @@
 #    By: majosue <majosue@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/13 10:14:46 by majosue           #+#    #+#              #
-#    Updated: 2020/01/08 14:50:53 by majosue          ###   ########.fr        #
+#    Updated: 2020/01/12 21:07:21 by majosue          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MINILIBX = minilibx_macos/libmlx.a
 LIBFT = libft/libft.a
 COMPILERC = gcc
 FLAGS = -g #-Wall -Wextra -Werror
-SOURCES  =  fdf.c ft_readmap.c ft_draw_line.c
+SOURCES  =  fdf.c ft_readmap.c ft_draw_line.c ft_atoi_base.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -27,10 +27,10 @@ $(NAME): $(OBJECTS) $(MINILIBX) $(LIBFT)
 	$(COMPILERC) -o $(NAME) $(OBJECTS) $(INCLUDES) -L minilibx_macos/ -lmlx -framework OpenGL -framework Appkit -L libft/ -lft
 	
 $(LIBFT): libft/*.c libft/*.h	
-	@make -C libft/
+	@make -j16 -C libft/
 
 $(MINILIBX): minilibx_macos/*.c minilibx_macos/*.h
-	@make -C minilibx_macos/
+	@make -j16 -C minilibx_macos/
 
 %.o: %.c $(HEADER)
 	$(COMPILERC) $(FLAGS) $(INCLUDES) -o $@ -c $< 
