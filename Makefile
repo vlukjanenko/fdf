@@ -6,7 +6,7 @@
 #    By: majosue <majosue@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/13 10:14:46 by majosue           #+#    #+#              #
-#    Updated: 2020/01/12 21:07:21 by majosue          ###   ########.fr        #
+#    Updated: 2020/01/14 10:05:00 by majosue          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,17 @@ FLAGS = -g #-Wall -Wextra -Werror
 SOURCES  =  fdf.c ft_readmap.c ft_draw_line.c ft_atoi_base.c
 
 OBJECTS = $(SOURCES:.c=.o)
-
+.PHONY: clean fclean re all
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(MINILIBX) $(LIBFT)
 	$(COMPILERC) -o $(NAME) $(OBJECTS) $(INCLUDES) -L minilibx_macos/ -lmlx -framework OpenGL -framework Appkit -L libft/ -lft
 	
 $(LIBFT): libft/*.c libft/*.h	
-	@make -j16 -C libft/
+	@make -C libft/
 
 $(MINILIBX): minilibx_macos/*.c minilibx_macos/*.h
-	@make -j16 -C minilibx_macos/
+	@make -C minilibx_macos/
 
 %.o: %.c $(HEADER)
 	$(COMPILERC) $(FLAGS) $(INCLUDES) -o $@ -c $< 

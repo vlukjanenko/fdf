@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2020/01/12 19:12:43 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/14 12:02:48 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 */
 # define WIN_WIDTH 1600
 # define WIN_HEIGHT 1200
+# define BASE_COLOUR 0xff9900
 # define MARGIN 0
 /*
  Here I built a struct of the MLX image :
@@ -81,6 +82,9 @@ typedef struct	s_mlx
 	float az;
 	float center;
 	float alt;
+	int mouse_b;
+	int mouse_x;
+	int mouse_y;
 	int p;
 
 	t_img		img;
