@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 17:11:51 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/12 17:01:10 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/16 14:58:24 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ft_append(char **param, char **line)
 		if (!(*param = ft_strjoin(*line, " ")))
 			return (0);
 		free(*line);
-		line = 0;
+		*line = 0;
 		return (1);
 	}
 	tmp = *line;

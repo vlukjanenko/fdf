@@ -6,7 +6,7 @@
 #    By: majosue <majosue@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/13 10:14:46 by majosue           #+#    #+#              #
-#    Updated: 2020/01/14 10:05:00 by majosue          ###   ########.fr        #
+#    Updated: 2020/01/16 17:09:45 by majosue          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ MINILIBX = minilibx_macos/libmlx.a
 LIBFT = libft/libft.a
 COMPILERC = gcc
 FLAGS = -g #-Wall -Wextra -Werror
-SOURCES  =  fdf.c ft_readmap.c ft_draw_line.c ft_atoi_base.c
+SOURCES  =  fdf.c ft_readmap.c ft_draw_line.c ft_atoi_base.c ft_move.c ft_draw.c \
+ft_keypress.c ft_set_colour.c
 
 OBJECTS = $(SOURCES:.c=.o)
 .PHONY: clean fclean re all
