@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 16:27:24 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/17 13:40:08 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 15:49:06 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int		main(int argc, char **argv)
 	}
 	if (!ft_mlx_init(&mlx, argv[1]))
 	{
-		ft_putendl("usage: ./fdf mapfile");
+		ft_putendl("Unexpected error. Exiting");
 		return (0);
 	}
 	ft_events(&mlx);
