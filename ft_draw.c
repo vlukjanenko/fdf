@@ -6,13 +6,13 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:25:58 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/16 17:00:15 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 13:58:44 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void ft_win_to_log(t_mlx *mlx)
+void	ft_win_to_log(t_mlx *mlx)
 {
 	int i;
 
@@ -41,12 +41,14 @@ int		ft_pr1(t_mlx *mlx)
 	int		i;
 	double	k;
 
-	k = 5000;
+	k = 2000;
 	i = -1;
 	while (++i < mlx->n)
 	{
-		mlx->map[i].xp = mlx->map[i].xo / (mlx->map[i].zo / k + 1);
-		mlx->map[i].yp = mlx->map[i].yo / (mlx->map[i].zo / k + 1);
+		mlx->map[i].xp = (mlx->p == 'p') ? mlx->map[i].xo /\
+		(mlx->map[i].zo / k + 1) : mlx->map[i].xo;
+		mlx->map[i].yp = (mlx->p == 'p') ? mlx->map[i].yo /\
+		(mlx->map[i].zo / k + 1) : mlx->map[i].yo;
 	}
 	ft_log_to_win(mlx);
 	return (1);
@@ -100,5 +102,6 @@ int		ft_draw(t_mlx *mlx)
 			ft_draw_line(mlx, mlx->map[i], mlx->map[i - mlx->w]);
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
+	ft_put_help(mlx);
 	return (1);
 }

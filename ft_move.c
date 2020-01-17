@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:14:38 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/16 16:18:24 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 15:27:15 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_move(int key, t_mlx *mlx, int x, int y)
 {
-	int i;
-
 	if (key == 125)
 		mlx->map[mlx->n].yi += 10;
 	else if (key == 126)
@@ -35,10 +33,8 @@ int	ft_move(int key, t_mlx *mlx, int x, int y)
 
 int	ft_zoom(int key, t_mlx *mlx)
 {
-	int i;
-
 	if (key == 69 || key == 4)
-		mlx->zoom = (mlx->zoom < 5) ? mlx->zoom + 0.10 : mlx->zoom;
+		mlx->zoom = (mlx->zoom < 1.5) ? mlx->zoom + 0.10 : mlx->zoom;
 	else
 		mlx->zoom = (mlx->zoom > 0.5) ? mlx->zoom - 0.10 : mlx->zoom;
 	ft_draw(mlx);
@@ -47,8 +43,6 @@ int	ft_zoom(int key, t_mlx *mlx)
 
 int	ft_rotz(int key, t_mlx *mlx, double a)
 {
-	int i;
-
 	if (!a && key == 92)
 		mlx->az += 0.10;
 	else if (!a)
@@ -61,8 +55,6 @@ int	ft_rotz(int key, t_mlx *mlx, double a)
 
 int	ft_rotx(int key, t_mlx *mlx, double a)
 {
-	int i;
-
 	if (!a && key == 84)
 		mlx->ax += 0.10;
 	else if (!a)
@@ -75,8 +67,6 @@ int	ft_rotx(int key, t_mlx *mlx, double a)
 
 int	ft_roty(int key, t_mlx *mlx, double a)
 {
-	int i;
-
 	if (!a && key == 86)
 		mlx->ay += 0.10;
 	else if (!a)

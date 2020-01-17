@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 17:02:30 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/16 17:08:07 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 15:32:51 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,20 @@ int		ft_getcolor(t_point p1, t_point end, t_point current)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-int		ft_set_colour(t_point *point)
+int		ft_set_colour(t_point *point, int zmax)
 {
-	int red;
-	int green;
-	int blue;
+	int		red;
+	int		green;
+	int		blue;
+	double	percentage;
 
 	if (point->zi == 0)
-		return (BASE_COLOUR);
-	red = (BASE_COLOUR >> 16) + (int)(point->zi * 1.5);
-	green = (BASE_COLOUR >> 8) & 0xFF + (int)(point->zi * 1.5);
-	blue = BASE_COLOUR & 0xFF + (int)(point->zi * 1.5);
+		return (FLAT_COLOUR);
+	percentage = percent(0, zmax, point->zi);
+	red = get_light((FLAT_COLOUR >> 16) & 0xFF,\
+	(HIGH_COLOUR >> 16) & 0xFF, percentage);
+	green = get_light((FLAT_COLOUR >> 8) & 0xFF,\
+	(HIGH_COLOUR >> 8) & 0xFF, percentage);
+	blue = get_light(FLAT_COLOUR & 0xFF, HIGH_COLOUR & 0xFF, percentage);
 	return ((red << 16) | (green << 8) | blue);
 }

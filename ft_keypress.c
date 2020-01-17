@@ -6,13 +6,13 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 16:43:06 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/16 16:55:18 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 13:37:49 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_keypress(int keycode, void *mlx)
+int		ft_keypress(int keycode, t_mlx *mlx)
 {
 	if (keycode == 53)
 		ft_close(mlx);
@@ -26,35 +26,48 @@ int	ft_keypress(int keycode, void *mlx)
 		ft_rotx(keycode, mlx, 0);
 	if (keycode == 86 || keycode == 88)
 		ft_roty(keycode, mlx, 0);
+	if (keycode == 31)
+	{
+		mlx->p = 'o';
+		ft_draw(mlx);
+	}
+	if (keycode == 35)
+	{
+		mlx->p = 'p';
+		ft_draw(mlx);
+	}
+	if (keycode == 87 || keycode == 82)
+		ft_reset(keycode, mlx);
 	return (1);
 }
 
-int	ft_mouse_press(int button, int x, int y, t_mlx *mlx)
+int		ft_mouse_press(int button, int x, int y, t_mlx *mlx)
 {
+	mlx->mouse_x = x - mlx->map[mlx->n].xi;
+	mlx->mouse_y = y - mlx->map[mlx->n].yi;
 	if (button == 4 || button == 5)
 		ft_zoom(button, mlx);
-	if (button == 1 && y > 0)
-	{
-		mlx->mouse_b = 1;
-		mlx->mouse_x = x - mlx->map[mlx->n].xi;
-		mlx->mouse_y = y - mlx->map[mlx->n].yi;
-	}
+	if ((button == 1 || button == 2) && y > 0)
+		mlx->mouse_b = button;
 	return (1);
 }
 
-int	ft_mouse_release(int button, int x, int y, t_mlx *mlx)
+int		ft_mouse_release(int button, int x, int y, t_mlx *mlx)
 {
+	button = x;
+	y = button;
 	mlx->mouse_b = 0;
 	return (1);
 }
 
-int	ft_mouse_move(int x, int y, t_mlx *mlx)
+int		ft_mouse_move(int x, int y, t_mlx *mlx)
 {
 	if (mlx->mouse_b == 1)
 		ft_move(0, mlx, x, y);
 	return (1);
 }
-void ft_events(t_mlx *mlx)
+
+void	ft_events(t_mlx *mlx)
 {
 	mlx_hook(mlx->win, 17, 1l << 17, ft_close, mlx);
 	mlx_hook(mlx->win, 4, 1L << 2, ft_mouse_press, mlx);

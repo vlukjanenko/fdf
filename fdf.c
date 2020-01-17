@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 16:27:24 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/16 17:26:51 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 13:40:08 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	cleanarr(char ***array)
 {
 	char **tmp;
 
-	tmp = *array;
-	while (**array)
+	if (*array)
 	{
-		free(**array);
-		(*array)++;
+		tmp = *array;
+		while (**array)
+		{
+			free(**array);
+			(*array)++;
+		}
+		free(tmp);
 	}
-	free(tmp);
 }
 
 int		ft_close(t_mlx *mlx)
@@ -41,20 +44,23 @@ int		ft_map_init(t_mlx *mlx, char ***a)
 {
 	int		i;
 	double	d;
+	int		zmax;
 
 	if (!(mlx->map = (t_point *)malloc(sizeof(t_point) *\
 	(mlx->w * mlx->h + 1))))
 		return (0);
+	zmax = ft_find_zmax(*a);
 	i = -1;
-	d = mlx->w > mlx->h ? WIN_WIDTH / mlx->w : WIN_HEIGHT / mlx->h;
+	d = ft_find_d(mlx, zmax);
 	while (++i < mlx->n)
 	{
 		mlx->map[i].xi = i % mlx->w * d + (d + WIN_WIDTH - d * mlx->w) / 2;
 		mlx->map[i].yi = i / mlx->w * d + (d + WIN_HEIGHT - d * mlx->h) / 2;
 		mlx->map[i].zi = -d * ft_atoi((*a)[i]);
 		mlx->map[i].ci = (ft_strchr((*a)[i], ',')) ? ft_atoi_base(ft_strchr(\
-		(*a)[i], 'x') + 1, 16) : ft_set_colour(&mlx->map[i]);
+		(*a)[i], 'x') + 1, 16) : ft_set_colour(&mlx->map[i], zmax);
 	}
+	mlx->p = 'o';
 	mlx->map[mlx->n].xi = WIN_WIDTH / 2;
 	mlx->map[mlx->n].yi = WIN_HEIGHT / 2;
 	ft_win_to_log(mlx);
@@ -74,10 +80,7 @@ int		ft_mlx_init(t_mlx *mlx, char *name)
 	mlx->ay = 0;
 	mlx->az = 0;
 	mlx->mouse_b = 0;
-	mlx->zoom = 0.8;
-	mlx->map[mlx->n].yi = mlx->map[mlx->n].yi + WIN_HEIGHT / 4;
-	ft_rotx(0, mlx, -1.2);
-	ft_roty(0, mlx, 0.785);
+	ft_reset(87, mlx);
 	ft_draw(mlx);
 	return (1);
 }
@@ -86,7 +89,6 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	char	**array;
-	int		i;
 	t_mlx	mlx;
 
 	if (argc != 2 || (fd = open(argv[1], O_RDONLY)) < 0)

@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 14:33:29 by majosue           #+#    #+#             */
-/*   Updated: 2020/01/16 17:03:20 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 15:30:48 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	ft_ystep(t_mlx *mlx, t_point p1, t_point p2)
 	dirx = (p2.x - p1.x) < 0 ? -1 : 1;
 	while (p1.y <= p2.y)
 	{
-	if (p1.y < WIN_HEIGHT && p1.y >= 0 && p1.x < WIN_WIDTH && p1.x > 0)
-		(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = ft_getcolor(p1, p2, p1);
+		if (p1.y < WIN_HEIGHT && p1.y >= 0 && p1.x < WIN_WIDTH && p1.x > 0)
+			(*mlx).img.data[p1.y * WIN_WIDTH + p1.x] = ft_getcolor(p1, p2, p1);
 		error = error + deltaerr;
 		if (error >= (deltay + 1))
 		{

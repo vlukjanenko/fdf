@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 01:19:41 by lmarques          #+#    #+#             */
-/*   Updated: 2020/01/16 17:36:53 by majosue          ###   ########.fr       */
+/*   Updated: 2020/01/17 14:50:11 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 # define WIN_WIDTH 1600
 # define WIN_HEIGHT 1200
-# define BASE_COLOUR 0xff9900
+# define FLAT_COLOUR 0xff9900
+# define HIGH_COLOUR 0x008F11
 
 typedef struct	s_img
 {
@@ -44,7 +45,6 @@ typedef struct	s_point
 	double	yi;
 	double	zo;
 	double	zi;
-	int		c;
 	int		ci;
 }				t_point;
 
@@ -79,7 +79,11 @@ int				ft_draw(t_mlx *mlx);
 void			ft_events(t_mlx *mlx);
 int				ft_close(t_mlx *mlx);
 void			ft_win_to_log(t_mlx *mlx);
-int				ft_set_colour(t_point *point);
+int				ft_set_colour(t_point *point, int zmax);
 int				ft_getcolor(t_point p1, t_point end, t_point current);
+void			ft_reset(int key, t_mlx *mlx);
+int				ft_find_zmax(char **a);
+int				ft_find_d(t_mlx *mlx, int zmax);
+void			ft_put_help(t_mlx *mlx);
 
 #endif
